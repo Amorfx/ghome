@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <h1>Liste des objets connectéss</h1>
+        <ul>
+            {{range .allDevices }}
+            <li>{{.Name}} - IP : {{.IP}}</li>
+            {{end}}
+        </ul>
+        <div>
+            <h2>Ajouter un object connectéee</h2>
+            <form method="POST" action="devices/add">
+                <select name="device_type">
+                    <option value="false">Choisir un type d'objet</option>
+                    {{range $type, $name := .deviceTypes }}
+                    <option value="{{ $type }}">{{ $name }}</option>
+                    {{end}}
+                </select>
+                <input type="text" name="device_name" placeholder="Nom" />
+                <input type="text" name="device_ip" placeholder="IP" />
+                <input type="submit" value="Ajouter" />
+            </form>
+        </div>
+    </body>
+</html>
